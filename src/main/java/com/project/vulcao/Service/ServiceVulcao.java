@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.project.vulcao.Model.Vulcao;
 import com.project.vulcao.Repository.VulcaoRepository;
 
-import io.swagger.annotations.ApiOperation;
-
 @Service
 public class ServiceVulcao {
   
@@ -18,6 +16,7 @@ public class ServiceVulcao {
 	public ServiceVulcao(VulcaoRepository vulcaoRepository) {
 		 this.vulcaoRepository = vulcaoRepository;
 	}
+	
 	
 	public ResponseEntity<Vulcao> listVulcaoById (Long id) {
 		Optional<Vulcao> listId = vulcaoRepository.findById(id);
