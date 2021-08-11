@@ -21,7 +21,7 @@ public class ControllerVulcao {
 		this.serviceVulcao = serviceVulcao;
 	}
 	
-	@ApiOperation(value = "Listando vulcaoes por codigo de indentificação")
+	@ApiOperation(value = "Listando vulcaoes por codigo de indentificação", nickname = "ListandoVulcaoId")
 	@GetMapping("/{id}")
 	public ResponseEntity<Vulcao> volcanoListId(@PathVariable Long id) {
 		return serviceVulcao.listVulcaoById(id);
