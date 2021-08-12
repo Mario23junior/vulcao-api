@@ -10,6 +10,6 @@ public class ConvertingEntityVulcao {
 				vulcao.getUltimaErupcao(), vulcao.getDescricao());
 		
 		return vulcaoDto;
-
 	}
+
 }
