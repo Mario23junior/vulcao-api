@@ -28,6 +28,10 @@ public class ServiceVulcao {
 				      : ResponseEntity.notFound().build();
 	}
 	
-
+	public Vulcao saveByVulcao(Vulcao vulcao) {
+	 Vulcao saveEntity = vulcaoRepository.save(vulcao);
+	 return saveEntity;
+		
+	}
+	
 }
-

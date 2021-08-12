@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class VulcaoDTO {
 
- 
 	private Boolean ativo;
 
 	private String formadoPor;

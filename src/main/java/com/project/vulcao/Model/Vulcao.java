@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity
 public class Vulcao {
    
@@ -20,7 +22,22 @@ public class Vulcao {
  	
  	private LocalDate ultimaErupcao;
  	
+ 	@Length(max = 1000, min = 10)
  	private String descricao;
+
+ 	public Vulcao() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Vulcao(Long id, Boolean ativo, String formadoPor, LocalDate ultimaErupcao,
+			@Length(max = 1000, min = 10) String descricao) {
+		super();
+		this.id = id;
+		this.ativo = ativo;
+		this.formadoPor = formadoPor;
+		this.ultimaErupcao = ultimaErupcao;
+		this.descricao = descricao;
+	}
 
 	public Long getId() {
 		return id;
