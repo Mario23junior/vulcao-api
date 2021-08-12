@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.vulcao.Model.Vulcao;
+import com.project.vulcao.EntityDTO.VulcaoDTO;
 import com.project.vulcao.Service.ServiceVulcao;
 
 @RestController
@@ -20,7 +20,7 @@ public class ControllerVulcao {
 	}
 	
  	@GetMapping("/{id}")
-	public ResponseEntity<Vulcao> volcanoListId(@PathVariable Long id) {
+	public ResponseEntity<VulcaoDTO> volcanoListId(@PathVariable("id") Long id) {
 		return serviceVulcao.listVulcaoById(id);
 	}
 }
