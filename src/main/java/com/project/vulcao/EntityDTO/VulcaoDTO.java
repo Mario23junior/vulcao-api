@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 public class VulcaoDTO {
 
-	private String nome;
+ 
+ 	private String nome;
 	
 	private Boolean ativo;
 
@@ -23,6 +24,7 @@ public class VulcaoDTO {
 		this.descricao = descricao;
 	}
 	
+
 	public String getNome() {
 		return nome;
 	}
@@ -64,5 +66,7 @@ public class VulcaoDTO {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+ 
 
 }
