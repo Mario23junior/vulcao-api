@@ -20,6 +20,7 @@ public class ErroResponse {
 		this.message = message;
 		this.path = path;
 	}
+	
 	public int getStatus() {
 		return status;
 	}
