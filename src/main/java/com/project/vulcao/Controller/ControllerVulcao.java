@@ -3,10 +3,13 @@ package com.project.vulcao.Controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.vulcao.EntityDTO.VulcaoDTO;
+import com.project.vulcao.Model.Vulcao;
 import com.project.vulcao.Service.ServiceVulcao;
 
 @RestController
@@ -24,5 +27,8 @@ public class ControllerVulcao {
 		return serviceVulcao.listVulcaoById(id);
 	}
  	
- 	 
+ 	@PostMapping
+ 	public Vulcao vulcaoSave(@RequestBody VulcaoDTO vulcaoDto) {
+ 		return serviceVulcao.salvar(vulcaoDto);
+ 	}
 }

@@ -3,8 +3,10 @@ package com.project.vulcao.Service;
 import java.util.Optional;
 
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.project.vulcao.EntityDTO.VulcaoDTO;
 import com.project.vulcao.Exceptions.ObjectValueEqualMessageError;
@@ -27,6 +29,17 @@ public class ServiceVulcao {
 		return listId.isPresent() ? 
 				ResponseEntity.ok(ConvertingEntityVulcao.convertingToDTO(listId.get()))
 				: ResponseEntity.notFound().build();
+	}
+	
+	public Vulcao salvar(@RequestBody VulcaoDTO vulcaoDTO) {
+		Vulcao vulcao = saveVulcao(ConvertingEntityVulcao.convertingToDTObyEntity(vulcaoDTO));
+		ResponseEntity.status(HttpStatus.CREATED).body(ConvertingEntityVulcao.convertingToDTO(vulcao));
+		return saveVulcao(vulcao);
+ 	}
+	
+	public Vulcao saveVulcao(Vulcao vulcao) {
+		DonLetValueBeDuplicated(vulcao);
+		return vulcaoRepository.save(vulcao);
 	}
 	
 		

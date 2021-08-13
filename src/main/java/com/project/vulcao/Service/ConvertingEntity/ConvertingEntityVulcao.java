@@ -10,4 +10,10 @@ public class ConvertingEntityVulcao {
 				vulcao.getUltimaErupcao(), vulcao.getDescricao());
 		return vulcaoDto;
 	}
+	
+	public static Vulcao convertingToDTObyEntity(VulcaoDTO vulcaoDto) {
+		Vulcao vulcao = new Vulcao(null, vulcaoDto.getNome(),vulcaoDto.getAtivo(), vulcaoDto.getFormadoPor(),
+				vulcaoDto.getUltimaErupcao(), vulcaoDto.getDescricao());
+		return vulcao;
+	}
 }
