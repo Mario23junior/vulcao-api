@@ -6,4 +6,5 @@ import com.project.vulcao.Model.Vulcao;
 
 public interface VulcaoRepository extends JpaRepository<Vulcao, Long>{
    
+   Vulcao findByNome(String nome);
 }
