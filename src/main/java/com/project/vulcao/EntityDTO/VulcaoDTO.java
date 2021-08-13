@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class VulcaoDTO {
 
+	private String nome;
+	
 	private Boolean ativo;
 
 	private String formadoPor;
@@ -12,14 +14,25 @@ public class VulcaoDTO {
 
 	private String descricao;
 
-	public VulcaoDTO(Boolean ativo, String formadoPor, LocalDate ultimaErupcao, String descricao) {
+	public VulcaoDTO(String nome,Boolean ativo, String formadoPor, LocalDate ultimaErupcao, String descricao) {
 		super();
+		this.nome = nome;
  		this.ativo = ativo;
 		this.formadoPor = formadoPor;
 		this.ultimaErupcao = ultimaErupcao;
 		this.descricao = descricao;
 	}
- 
+	
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
 	public Boolean getAtivo() {
 		return ativo;
 	}
