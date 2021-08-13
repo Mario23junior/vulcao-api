@@ -29,22 +29,7 @@ public class ServiceVulcao {
 				: ResponseEntity.notFound().build();
 	}
 	
-	public Vulcao salvarVulcao(Vulcao vulcao) {
- 		Vulcao saveVulcao = vulcaoRepository.save(vulcao);
-		  if(saveVulcao == null) {
-			ResponseEntity.ok(ConvertingEntityVulcao.convertingToDTO(saveVulcao));
-		}else {			
-			ResponseEntity.notFound().build();
-		}
-		  return saveVulcao;
-	}
-
-	public Vulcao saveByVulcao(Vulcao vulcao) {
-		DonLetValueBeDuplicated(vulcao);
-		Vulcao saveEntity = salvarVulcao(vulcao);
-		return saveEntity;
-	}
-	
+		
 	public void DonLetValueBeDuplicated(Vulcao vulcao){
 		Vulcao BucarVulcao = vulcaoRepository.findByNome(vulcao.getNome());
 		if(BucarVulcao != null && BucarVulcao.getId() != vulcao.getId()) {

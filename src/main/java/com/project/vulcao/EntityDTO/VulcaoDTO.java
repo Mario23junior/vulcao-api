@@ -3,7 +3,6 @@ package com.project.vulcao.EntityDTO;
 import java.time.LocalDate;
 
 public class VulcaoDTO {
-
  
  	private String nome;
 	

@@ -10,14 +10,4 @@ public class ConvertingEntityVulcao {
 				vulcao.getUltimaErupcao(), vulcao.getDescricao());
 		return vulcaoDto;
 	}
-	
-	
-	private static VulcaoDTO vulcaoDto;
-	public static VulcaoDTO convertingToDTO(Long id) {
-		VulcaoDTO vulcao = new VulcaoDTO(vulcaoDto.getNome(),vulcaoDto.getAtivo(), vulcaoDto.getFormadoPor(),
-				vulcaoDto.getUltimaErupcao(), vulcaoDto.getDescricao());
-		return vulcao;
-	}
-	
-	
 }
