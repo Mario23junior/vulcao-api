@@ -28,7 +28,7 @@ public class ControllerVulcao {
 	}
  	
  	@PostMapping
- 	public Vulcao saveVulcao(@RequestBody Vulcao vulcao) {
- 		 return serviceVulcao.saveByVulcao(vulcao);
+ 	public Vulcao vulcaoSave(@RequestBody VulcaoDTO vulcaoDto) {
+ 		return serviceVulcao.salvar(vulcaoDto);
  	}
 }

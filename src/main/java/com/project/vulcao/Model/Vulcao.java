@@ -26,12 +26,12 @@ public class Vulcao {
 
 	@Length(max = 1000, min = 10)
 	private String descricao;
-
+	
 	public Vulcao() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public Vulcao(Long id, String nome, Boolean ativo, String formadoPor, LocalDate ultimaErupcao,
+	
+	public Vulcao(Long id,String nome, Boolean ativo, String formadoPor, LocalDate ultimaErupcao,
 			@Length(max = 1000, min = 10) String descricao) {
 		super();
 		this.id = id;
@@ -41,6 +41,7 @@ public class Vulcao {
 		this.ultimaErupcao = ultimaErupcao;
 		this.descricao = descricao;
 	}
+
 
 	public String getNome() {
 		return nome;

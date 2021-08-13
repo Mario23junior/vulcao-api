@@ -3,8 +3,10 @@ package com.project.vulcao.Service;
 import java.util.Optional;
 
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.project.vulcao.EntityDTO.VulcaoDTO;
 import com.project.vulcao.Exceptions.ObjectValueEqualMessageError;
@@ -29,22 +31,18 @@ public class ServiceVulcao {
 				: ResponseEntity.notFound().build();
 	}
 	
-	public Vulcao salvarVulcao(Vulcao vulcao) {
- 		Vulcao saveVulcao = vulcaoRepository.save(vulcao);
-		  if(saveVulcao == null) {
-			ResponseEntity.ok(ConvertingEntityVulcao.convertingToDTO(saveVulcao));
-		}else {			
-			ResponseEntity.notFound().build();
-		}
-		  return saveVulcao;
-	}
-
-	public Vulcao saveByVulcao(Vulcao vulcao) {
+	public Vulcao salvar(@RequestBody VulcaoDTO vulcaoDTO) {
+		Vulcao vulcao = saveVulcao(ConvertingEntityVulcao.convertingToDTObyEntity(vulcaoDTO));
+		ResponseEntity.status(HttpStatus.CREATED).body(ConvertingEntityVulcao.convertingToDTO(vulcao));
+		return saveVulcao(vulcao);
+ 	}
+	
+	public Vulcao saveVulcao(Vulcao vulcao) {
 		DonLetValueBeDuplicated(vulcao);
-		Vulcao saveEntity = salvarVulcao(vulcao);
-		return saveEntity;
+		return vulcaoRepository.save(vulcao);
 	}
 	
+		
 	public void DonLetValueBeDuplicated(Vulcao vulcao){
 		Vulcao BucarVulcao = vulcaoRepository.findByNome(vulcao.getNome());
 		if(BucarVulcao != null && BucarVulcao.getId() != vulcao.getId()) {
