@@ -12,6 +12,7 @@ import com.project.vulcao.Service.ConvertingEntity.ConvertingEntityVulcao;
 
 @Service
 public class ServiceVulcao {
+	
 	private VulcaoRepository vulcaoRepository;
 	public ConvertingEntityVulcao convertingEntityVulcao;
 
@@ -30,4 +31,5 @@ public class ServiceVulcao {
 		Vulcao saveEntity = vulcaoRepository.save(vulcao);
 		return saveEntity;
 	}
+	
 }
