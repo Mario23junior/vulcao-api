@@ -11,32 +11,43 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Vulcao {
-   
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
- 	private Boolean ativo;
-	
- 	private String formadoPor;
- 	
- 	private LocalDate ultimaErupcao;
- 	
- 	@Length(max = 1000, min = 10)
- 	private String descricao;
 
- 	public Vulcao() {
+	private String nome;
+
+	private Boolean ativo;
+
+	private String formadoPor;
+
+	private LocalDate ultimaErupcao;
+
+	@Length(max = 1000, min = 10)
+	private String descricao;
+
+	public Vulcao() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Vulcao(Long id, Boolean ativo, String formadoPor, LocalDate ultimaErupcao,
+	public Vulcao(Long id, String nome, Boolean ativo, String formadoPor, LocalDate ultimaErupcao,
 			@Length(max = 1000, min = 10) String descricao) {
 		super();
 		this.id = id;
+		this.nome = nome;
 		this.ativo = ativo;
 		this.formadoPor = formadoPor;
 		this.ultimaErupcao = ultimaErupcao;
 		this.descricao = descricao;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Long getId() {
