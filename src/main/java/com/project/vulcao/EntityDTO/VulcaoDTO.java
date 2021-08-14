@@ -3,7 +3,9 @@ package com.project.vulcao.EntityDTO;
 import java.time.LocalDate;
 
 public class VulcaoDTO {
- 
+ 	
+	private Long id;
+	
  	private String nome;
 	
 	private Boolean ativo;
@@ -14,15 +16,26 @@ public class VulcaoDTO {
 
 	private String descricao;
 
-	public VulcaoDTO(String nome,Boolean ativo, String formadoPor, LocalDate ultimaErupcao, String descricao) {
+	public VulcaoDTO() {
+ 	}
+	
+	public VulcaoDTO(String nome, Boolean ativo, String formadoPor, LocalDate ultimaErupcao,
+			String descricao) {
 		super();
 		this.nome = nome;
- 		this.ativo = ativo;
+		this.ativo = ativo;
 		this.formadoPor = formadoPor;
 		this.ultimaErupcao = ultimaErupcao;
 		this.descricao = descricao;
-	}
+	}	
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
