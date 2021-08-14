@@ -46,9 +46,9 @@ public class ServiceVulcao {
 			vulcaoConsult.setFormadoPor(vulcao.getFormadoPor());
 			vulcaoConsult.setUltimaErupcao(vulcao.getUltimaErupcao());
 			vulcaoRepository.save(vulcaoConsult);
-			return new ResponseEntity<Vulcao>(vulcaoConsult,HttpStatus.OK);
+			return new ResponseEntity<>(vulcaoConsult,HttpStatus.OK);
 		}else {
-			return new ResponseEntity<Vulcao>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
 	}
@@ -66,7 +66,17 @@ public class ServiceVulcao {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return vulcao.get();
-
 	}
+	
 
+	public ResponseEntity<Vulcao> deleteVulcao(Long id) {
+		Optional<Vulcao> vulcaoDelete = vulcaoRepository.findById(id);
+		if(vulcaoDelete.isPresent()) {
+			vulcaoRepository.delete(vulcaoDelete.get());
+			return new ResponseEntity<>(HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 }
+
