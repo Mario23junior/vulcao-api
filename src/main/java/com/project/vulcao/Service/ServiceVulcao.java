@@ -31,6 +31,11 @@ public class ServiceVulcao {
 		}
 	}
 	
+	public Vulcao saveVulcao(Vulcao vulcao) {
+		DonLetValueBeDuplicated(vulcao);
+		return vulcaoRepository.save(vulcao);
+	}
+	
 	public void DonLetValueBeDuplicated(Vulcao vulcao) {
 		Vulcao BucarVulcao = vulcaoRepository.findByNome(vulcao.getNome());
 		if (BucarVulcao != null && BucarVulcao.getId() != vulcao.getId()) {
