@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,11 @@ public class ControllerVulcao {
  	public Vulcao vulcaoSave(@RequestBody Vulcao vulcao) {
  		return serviceVulcao.saveVulcao(vulcao);
  	}
+ 	
+ 	@PutMapping("/{id}")
+ 	public ResponseEntity<Vulcao> updateData(@PathVariable Long id, @RequestBody Vulcao vulcao) {
+ 		return serviceVulcao.updateData(id, vulcao);
+   	}
  	
 
 }

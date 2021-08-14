@@ -36,6 +36,23 @@ public class ServiceVulcao {
 		return vulcaoRepository.save(vulcao);
 	}
 	
+	public ResponseEntity<Vulcao> updateData(Long id, Vulcao vulcao) {
+		DonLetValueBeDuplicated(vulcao);
+		Optional<Vulcao> listVulcao = vulcaoRepository.findById(id);
+		if(listVulcao.isPresent()) {
+			Vulcao vulcaoConsult = listVulcao.get();
+			vulcaoConsult.setNome(vulcao.getNome());
+			vulcaoConsult.setAtivo(vulcao.getAtivo());
+			vulcaoConsult.setFormadoPor(vulcao.getFormadoPor());
+			vulcaoConsult.setUltimaErupcao(vulcao.getUltimaErupcao());
+			vulcaoRepository.save(vulcaoConsult);
+			return new ResponseEntity<Vulcao>(vulcaoConsult,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<Vulcao>(HttpStatus.NOT_FOUND);
+		}
+
+	}
+	
 	public void DonLetValueBeDuplicated(Vulcao vulcao) {
 		Vulcao BucarVulcao = vulcaoRepository.findByNome(vulcao.getNome());
 		if (BucarVulcao != null && BucarVulcao.getId() != vulcao.getId()) {
