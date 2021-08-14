@@ -3,6 +3,8 @@ package com.project.vulcao.Controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +25,11 @@ public class ControllerVulcao {
  	public ResponseEntity<Vulcao> listById(@PathVariable Long id){
  		return serviceVulcao.listVulcao(id);
    	}
+ 	
+ 	@PostMapping
+ 	public Vulcao vulcaoSave(@RequestBody Vulcao vulcao) {
+ 		return serviceVulcao.saveVulcao(vulcao);
+ 	}
  	
 
 }
