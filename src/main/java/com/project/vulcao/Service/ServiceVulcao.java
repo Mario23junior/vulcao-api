@@ -2,11 +2,13 @@ package com.project.vulcao.Service;
 
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.project.vulcao.EntityDTO.VulcaoDTO;
 import com.project.vulcao.Exceptions.ObjectValueEqualMessageError;
 import com.project.vulcao.Model.Vulcao;
 import com.project.vulcao.Repository.VulcaoRepository;
@@ -17,15 +19,17 @@ public class ServiceVulcao {
 
 	private VulcaoRepository vulcaoRepository;
 	public ConvertingEntityVulcao convertingEntityVulcao;
+	private ModelMapper modelMapper;
 
-	public ServiceVulcao(VulcaoRepository vulcaoRepository) {
+	public ServiceVulcao(VulcaoRepository vulcaoRepository, ModelMapper modelMapper) {
 		this.vulcaoRepository = vulcaoRepository;
+		this.modelMapper = modelMapper;
  	}
 
-	public ResponseEntity<Vulcao> listVulcao(Long id){
+	public ResponseEntity<VulcaoDTO> listVulcao(Long id){
 		Optional<Vulcao> vulcaoId = vulcaoRepository.findById(id);
 		if(vulcaoId.isPresent()) {
-			return new ResponseEntity<Vulcao>(vulcaoId.get(),HttpStatus.OK);
+			return ResponseEntity.ok(modelMapper.map(vulcaoId.get(), VulcaoDTO.class));
 		}else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -50,8 +54,18 @@ public class ServiceVulcao {
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-
 	}
+	
+	public ResponseEntity<Vulcao> deleteVulcao(Long id) {
+		Optional<Vulcao> vulcaoDelete = vulcaoRepository.findById(id);
+		if(vulcaoDelete.isPresent()) {
+			vulcaoRepository.delete(vulcaoDelete.get());
+			return new ResponseEntity<>(HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	
 	public void DonLetValueBeDuplicated(Vulcao vulcao) {
 		Vulcao BucarVulcao = vulcaoRepository.findByNome(vulcao.getNome());
@@ -67,16 +81,6 @@ public class ServiceVulcao {
 		}
 		return vulcao.get();
 	}
-	
 
-	public ResponseEntity<Vulcao> deleteVulcao(Long id) {
-		Optional<Vulcao> vulcaoDelete = vulcaoRepository.findById(id);
-		if(vulcaoDelete.isPresent()) {
-			vulcaoRepository.delete(vulcaoDelete.get());
-			return new ResponseEntity<>(HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
 }
 

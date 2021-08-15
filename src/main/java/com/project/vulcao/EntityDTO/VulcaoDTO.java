@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class VulcaoDTO {
  	
-	private Long id;
 	
  	private String nome;
 	
@@ -29,14 +28,8 @@ public class VulcaoDTO {
 		this.descricao = descricao;
 	}	
 	
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+ 
 	public String getNome() {
 		return nome;
 	}
