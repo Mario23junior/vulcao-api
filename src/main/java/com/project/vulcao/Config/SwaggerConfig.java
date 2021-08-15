@@ -38,7 +38,7 @@ public class SwaggerConfig {
 				.title(TITLE_API)
 				.description(DESCRIPTION)
 				.version(VERSION)
-				.contact(new Contact(NAME_AUTHOR, EMAIL, ENDERECO_API)).build();
+				.contact(new Contact(NAME_AUTHOR, ENDERECO_API,EMAIL)).build();
 	}
 
 }
