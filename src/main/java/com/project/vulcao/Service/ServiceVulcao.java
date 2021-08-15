@@ -35,6 +35,13 @@ public class ServiceVulcao {
 		}
 	}
 	
+	public ResponseEntity<VulcaoDTO> saveVulcao(VulcaoDTO vulcaoDto) {
+		 Vulcao saveId = saveVulcao(modelMapper.map(vulcaoDto, Vulcao.class));
+ 		 return ResponseEntity
+				            .status(HttpStatus.CREATED)
+ 				            .body(modelMapper.map(saveId, VulcaoDTO.class));	 
+	}
+	
 	public Vulcao saveVulcao(Vulcao vulcao) {
 		DonLetValueBeDuplicated(vulcao);
 		return vulcaoRepository.save(vulcao);
