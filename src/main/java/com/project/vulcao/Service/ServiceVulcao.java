@@ -47,7 +47,7 @@ public class ServiceVulcao {
 		return vulcaoRepository.save(vulcao);
 	}
 	
-	public ResponseEntity<Vulcao> updateData(Long id, Vulcao vulcao) {
+	public ResponseEntity<VulcaoDTO> updateData(Long id, Vulcao vulcao) {
 		DonLetValueBeDuplicated(vulcao);
 		Optional<Vulcao> listVulcao = vulcaoRepository.findById(id);
 		if(listVulcao.isPresent()) {
@@ -57,7 +57,7 @@ public class ServiceVulcao {
 			vulcaoConsult.setFormadoPor(vulcao.getFormadoPor());
 			vulcaoConsult.setUltimaErupcao(vulcao.getUltimaErupcao());
 			vulcaoRepository.save(vulcaoConsult);
-			return new ResponseEntity<>(vulcaoConsult,HttpStatus.OK);
+			return ResponseEntity.ok(modelMapper.map(vulcaoConsult, VulcaoDTO.class));
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

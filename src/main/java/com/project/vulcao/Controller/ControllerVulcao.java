@@ -35,7 +35,7 @@ public class ControllerVulcao {
  	}
  	
  	@PutMapping("/{id}")
- 	public ResponseEntity<Vulcao> updateData(@PathVariable Long id, @RequestBody Vulcao vulcao) {
+ 	public ResponseEntity<VulcaoDTO> updateData(@PathVariable Long id, @RequestBody Vulcao vulcao) {
  		return serviceVulcao.updateData(id, vulcao);
    	}
  	
