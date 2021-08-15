@@ -30,8 +30,8 @@ public class ControllerVulcao {
    	}
  	
  	@PostMapping
- 	public Vulcao vulcaoSave(@RequestBody Vulcao vulcao) {
- 		return serviceVulcao.saveVulcao(vulcao);
+ 	public ResponseEntity<VulcaoDTO> vulcaoSave(@RequestBody VulcaoDTO vulcaoDto) {
+ 		return serviceVulcao.saveVulcao(vulcaoDto);
  	}
  	
  	@PutMapping("/{id}")
