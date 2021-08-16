@@ -6,4 +6,6 @@ import com.project.vulcao.Model.Estrutura;
 
 public interface EstruturaRepository extends JpaRepository<Estrutura, Long>{
 
+	Estrutura findByTipoLava(String tipoLava);
+
 }

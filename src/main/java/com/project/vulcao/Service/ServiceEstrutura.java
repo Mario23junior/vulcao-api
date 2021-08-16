@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.project.vulcao.EntityDTO.EstruturaDTO;
+import com.project.vulcao.Exceptions.ObjectValueEqualMessageError;
 import com.project.vulcao.Model.Estrutura;
 import com.project.vulcao.Repository.EstruturaRepository;
 
@@ -32,4 +33,48 @@ public class ServiceEstrutura {
 		}
 	}
 	
+	public ResponseEntity<EstruturaDTO> saveEstrutura(EstruturaDTO estruturaDTO) {
+		Estrutura saveId = saveEntity(modelMapper.map(estruturaDTO, Estrutura.class));
+		return ResponseEntity
+				           .status(HttpStatus.CREATED)
+				           .body(modelMapper.map(saveId, EstruturaDTO.class));
+	}
+	
+	public Estrutura saveEntity(Estrutura estrutura) {
+		DonLetValueBeDuplicated(estrutura);
+ 		return estruturaRepository.save(estrutura);
+	}
+	
+	public void DonLetValueBeDuplicated(Estrutura estrutura) {
+		Estrutura buscaEstrutura = estruturaRepository.findByTipoLava(estrutura.getTipoLava());
+		if(buscaEstrutura != null && buscaEstrutura.getId() != estrutura.getId()) {
+			throw new ObjectValueEqualMessageError(String.format("o tipo %s já se encontra cadastrado", estrutura.getTipoLava()));
+		}
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
