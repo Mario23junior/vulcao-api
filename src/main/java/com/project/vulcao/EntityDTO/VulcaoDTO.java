@@ -2,17 +2,28 @@ package com.project.vulcao.EntityDTO;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class VulcaoDTO {
  	
-	
+	@Length(max = 10, min = 3)
+ 	@NotNull(message = "Nome")
  	private String nome;
 	
+	@NotNull(message = "Ativo")	
 	private Boolean ativo;
 
+	@Length(max = 10, min = 3)
+	@NotNull(message = "FormadoPor")	
 	private String formadoPor;
 
+	@NotNull(message = "UltimaErupcao")	
 	private LocalDate ultimaErupcao;
 
+	@Length(max = 1000, min = 3)
+	@NotNull(message = "Descricao")	
 	private String descricao;
 
 	public VulcaoDTO() {

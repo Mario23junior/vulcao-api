@@ -1,5 +1,7 @@
 package com.project.vulcao.Controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,12 +32,12 @@ public class ControllerVulcao {
    	}
  	
  	@PostMapping
- 	public ResponseEntity<VulcaoDTO> vulcaoSave(@RequestBody VulcaoDTO vulcaoDto) {
+ 	public ResponseEntity<VulcaoDTO> vulcaoSave(@RequestBody @Valid VulcaoDTO vulcaoDto) {
  		return serviceVulcao.saveVulcao(vulcaoDto);
  	}
  	
  	@PutMapping("/{id}")
- 	public ResponseEntity<VulcaoDTO> updateData(@PathVariable Long id, @RequestBody Vulcao vulcao) {
+ 	public ResponseEntity<VulcaoDTO> updateData(@PathVariable Long id, @Valid @RequestBody Vulcao vulcao) {
  		return serviceVulcao.updateData(id, vulcao);
    	}
  	

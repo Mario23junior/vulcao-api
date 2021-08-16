@@ -12,13 +12,11 @@ import com.project.vulcao.EntityDTO.VulcaoDTO;
 import com.project.vulcao.Exceptions.ObjectValueEqualMessageError;
 import com.project.vulcao.Model.Vulcao;
 import com.project.vulcao.Repository.VulcaoRepository;
-import com.project.vulcao.Service.ConvertingEntity.ConvertingEntityVulcao;
 
 @Service
 public class ServiceVulcao {
 
 	private VulcaoRepository vulcaoRepository;
-	public ConvertingEntityVulcao convertingEntityVulcao;
 	private ModelMapper modelMapper;
 
 	public ServiceVulcao(VulcaoRepository vulcaoRepository, ModelMapper modelMapper) {
