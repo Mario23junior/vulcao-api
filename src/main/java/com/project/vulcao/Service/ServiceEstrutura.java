@@ -56,6 +56,16 @@ public class ServiceEstrutura {
 		}
 	}
 	
+	public ResponseEntity<EstruturaDTO> deleteEstrutura(Long id) {
+		Optional<Estrutura> estruturafind = estruturaRepository.findById(id);
+		if(estruturafind.isPresent()) {
+			estruturaRepository.delete(estruturafind.get());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
 	public Estrutura saveEntity(Estrutura estrutura) {
 		DonLetValueBeDuplicated(estrutura);
  		return estruturaRepository.save(estrutura);
