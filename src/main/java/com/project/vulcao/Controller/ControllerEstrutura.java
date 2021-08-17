@@ -4,11 +4,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.vulcao.EntityDTO.EstruturaDTO;
+import com.project.vulcao.Model.Estrutura;
 import com.project.vulcao.Service.ServiceEstrutura;
 
 @RestController
@@ -29,6 +31,11 @@ public class ControllerEstrutura {
 	@PostMapping
 	public ResponseEntity<EstruturaDTO> saveEstrutura(@RequestBody EstruturaDTO estruturaDTO){
 		return serviceEstrutura.saveEstrutura(estruturaDTO);
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<EstruturaDTO> updateData(@PathVariable Long id,@RequestBody Estrutura estrutura) {
+		return serviceEstrutura.updateEstrutura(id, estrutura);
 	}
 
 }

@@ -40,6 +40,22 @@ public class ServiceEstrutura {
 				           .body(modelMapper.map(saveId, EstruturaDTO.class));
 	}
 	
+
+	public ResponseEntity<EstruturaDTO> updateEstrutura(Long id, Estrutura estrutura) {
+		DonLetValueBeDuplicated(estrutura);
+		Optional<Estrutura> listEstrutura = estruturaRepository.findById(id);
+		if(listEstrutura.isPresent()) {
+			Estrutura estruturaConsult = listEstrutura.get();
+			estruturaConsult.setFormacaoPerfil(estrutura.getFormacaoPerfil());
+			estruturaConsult.setFormatoPercorencia(estrutura.getFormatoPercorencia());
+			estruturaConsult.setTipoLava(estrutura.getTipoLava());
+			estruturaRepository.save(estruturaConsult);
+			return ResponseEntity.ok(modelMapper.map(estruturaConsult, EstruturaDTO.class));
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	public Estrutura saveEntity(Estrutura estrutura) {
 		DonLetValueBeDuplicated(estrutura);
  		return estruturaRepository.save(estrutura);
@@ -51,30 +67,4 @@ public class ServiceEstrutura {
 			throw new ObjectValueEqualMessageError(String.format("o tipo %s já se encontra cadastrado", estrutura.getTipoLava()));
 		}
 	}
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
