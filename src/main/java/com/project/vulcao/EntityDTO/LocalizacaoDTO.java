@@ -2,19 +2,14 @@ package com.project.vulcao.EntityDTO;
 
 public class LocalizacaoDTO {
    
-	private Long id;
 	private String continente;
 	private String pais;
 	private Double metros;
 	private Double pes;
 	private String cooordenadas;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	 
+	
 	public String getContinente() {
 		return continente;
 	}
