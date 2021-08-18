@@ -8,7 +8,6 @@ public class LocalizacaoDTO {
 	private Double pes;
 	private String cooordenadas;
 	
-	 
 	
 	public String getContinente() {
 		return continente;
