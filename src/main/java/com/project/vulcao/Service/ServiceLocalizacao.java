@@ -46,6 +46,23 @@ public class ServiceLocalizacao {
 		return localizacaoRepository.save(localizacao);
 	}
 	
+	public ResponseEntity<LocalizacaoDTO> updateDataLocalizacao(Long id, Localizacao localizacao) {
+		DonLetValueBeDuplicated(localizacao);
+ 		Optional<Localizacao> listLocalizacao = localizacaoRepository.findById(id);
+		if(listLocalizacao.isPresent()) {
+			Localizacao localData = listLocalizacao.get();
+			localData.setContinente(localizacao.getContinente());
+			localData.setCooordenadas(localizacao.getCooordenadas());
+			localData.setMetros(localizacao.getMetros());
+			localData.setPais(localizacao.getPais());
+			localData.setPes(localizacao.getPes());
+			localizacaoRepository.save(localData);
+			return ResponseEntity.ok(modelMapper.map(localData, LocalizacaoDTO.class));
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	public void DonLetValueBeDuplicated(Localizacao localizacao) {
 		Localizacao BucarLocalizacao = localizacaoRepository.findByContinente(localizacao.getContinente());
 		if (BucarLocalizacao != null && BucarLocalizacao.getContinente() != localizacao.getContinente()) {
