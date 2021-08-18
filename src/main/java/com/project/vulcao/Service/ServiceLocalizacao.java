@@ -63,6 +63,16 @@ public class ServiceLocalizacao {
 		}
 	}
 	
+	public ResponseEntity<Localizacao> deleteLocalizacao (Long id) {
+		Optional<Localizacao> localizacaoDelete = localizacaoRepository.findById(id);
+		if(localizacaoDelete.isPresent()) {
+		    localizacaoRepository.delete(localizacaoDelete.get());
+		    return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+		    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	public void DonLetValueBeDuplicated(Localizacao localizacao) {
 		Localizacao BucarLocalizacao = localizacaoRepository.findByContinente(localizacao.getContinente());
 		if (BucarLocalizacao != null && BucarLocalizacao.getContinente() != localizacao.getContinente()) {
