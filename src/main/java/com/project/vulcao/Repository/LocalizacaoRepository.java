@@ -6,4 +6,6 @@ import com.project.vulcao.Model.Localizacao;
 
 public interface LocalizacaoRepository extends JpaRepository<Localizacao, Long>{
 
+	Localizacao findByContinente(String continente);
+
 }

@@ -3,11 +3,13 @@ package com.project.vulcao.Service;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.project.vulcao.EntityDTO.LocalizacaoDTO;
+import com.project.vulcao.Exceptions.ObjectValueEqualMessageError;
 import com.project.vulcao.Model.Localizacao;
 import com.project.vulcao.Repository.LocalizacaoRepository;
 
@@ -30,4 +32,48 @@ public class ServiceLocalizacao {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	
+	public ResponseEntity<LocalizacaoDTO> saveDataLocalizao(LocalizacaoDTO localizacaoDto) {
+		Localizacao localizacao = saveLocalizacao(modelMapper.map(localizacaoDto, Localizacao.class));
+		return ResponseEntity
+				            .status(HttpStatus.CREATED)
+				            .body(modelMapper.map(localizacao, LocalizacaoDTO.class));
+	}
+	
+	public Localizacao saveLocalizacao(Localizacao localizacao) {
+		DonLetValueBeDuplicated(localizacao);
+		return localizacaoRepository.save(localizacao);
+	}
+	
+	public void DonLetValueBeDuplicated(Localizacao localizacao) {
+		Localizacao BucarLocalizacao = localizacaoRepository.findByContinente(localizacao.getContinente());
+		if (BucarLocalizacao != null && BucarLocalizacao.getContinente() != localizacao.getContinente()) {
+			throw new ObjectValueEqualMessageError(String.format("Continente %s já existe nesse cadastro", BucarLocalizacao.getContinente()));
+		}
+	}
+
+	public Localizacao ValueIdExiste(Long id) {
+		Optional<Localizacao> localizacao = localizacaoRepository.findById(id);
+		if (localizacao.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return localizacao.get();
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
