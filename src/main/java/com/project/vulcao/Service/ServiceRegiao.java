@@ -3,11 +3,13 @@ package com.project.vulcao.Service;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.project.vulcao.EntityDTO.RegiaoDTO;
+import com.project.vulcao.Exceptions.ObjectValueEqualMessageError;
 import com.project.vulcao.Model.Regiao;
 import com.project.vulcao.Repository.RegiaoRepository;
 
@@ -30,4 +32,48 @@ public class ServiceRegiao {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	public ResponseEntity<RegiaoDTO> saveDataRegiao(RegiaoDTO regiaoDto) {
+	   Regiao regiaoId = saveRegiao(modelMapper.map(regiaoDto, Regiao.class));
+	   return ResponseEntity
+			              .status(HttpStatus.CREATED)
+			              .body(modelMapper.map(regiaoId, RegiaoDTO.class));
+	}
+
+	private Regiao saveRegiao(Regiao regiao) {
+		DonLetValueBeDuplicated(regiao);
+ 		return regiaoRepository.save(regiao);
+	}
+	
+	public void DonLetValueBeDuplicated(Regiao regiao) {
+		Regiao BucarRegiao = regiaoRepository.findByRegiaoGeografica(regiao.getRegiaoGeografica());
+		if (BucarRegiao != null && BucarRegiao.getId() != regiao.getId()) {
+			throw new ObjectValueEqualMessageError(String.format("informação de regionalização  %s já esta cadastrado", regiao.getRegiaoGeografica()));
+		}
+	}
+
+	public Regiao ValueIdExiste(Long id) {
+		Optional<Regiao> regiao = regiaoRepository.findById(id);
+		if (regiao.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return regiao.get();
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
