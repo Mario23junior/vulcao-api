@@ -1,6 +1,7 @@
 package com.project.vulcao.Controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,11 @@ public class ControllerRegiao {
 	@PutMapping("/{id}")
 	public ResponseEntity<RegiaoDTO> updateRegiao(@RequestBody Regiao regiao, @PathVariable Long id) {
 		return serviceRegiao.updateRegiao(id, regiao);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Regiao> deleteRegiao(@PathVariable Long id) {
+		return serviceRegiao.deleteByRegiao(id);
 	}
 }
 

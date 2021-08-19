@@ -61,6 +61,16 @@ public class ServiceRegiao {
 		}
 	}
 	
+	public ResponseEntity<Regiao> deleteByRegiao(Long id) {
+		Optional<Regiao> regiaoDelete = regiaoRepository.findById(id);
+		if(regiaoDelete.isPresent()) {
+			regiaoRepository.delete(regiaoDelete.get());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	public void DonLetValueBeDuplicated(Regiao regiao) {
 		Regiao BucarRegiao = regiaoRepository.findByRegiaoGeografica(regiao.getRegiaoGeografica());
 		if (BucarRegiao != null && BucarRegiao.getId() != regiao.getId()) {
