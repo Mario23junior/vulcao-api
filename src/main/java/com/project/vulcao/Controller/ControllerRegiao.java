@@ -3,6 +3,8 @@ package com.project.vulcao.Controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +24,10 @@ public class ControllerRegiao {
 	@GetMapping("/{id}")
 	public ResponseEntity<RegiaoDTO> listIdRegiao(@PathVariable Long id) {
 		return serviceRegiao.listRegiaoId(id);
+	}
+	
+	@PostMapping
+	public ResponseEntity<RegiaoDTO> saveByRegiao(@RequestBody RegiaoDTO regiaoDto) {
+		return serviceRegiao.saveDataRegiao(regiaoDto);
 	}
 }

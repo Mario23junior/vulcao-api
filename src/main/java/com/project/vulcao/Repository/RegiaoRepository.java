@@ -6,4 +6,6 @@ import com.project.vulcao.Model.Regiao;
 
 public interface RegiaoRepository extends JpaRepository<Regiao, Long>{
 
+	Regiao findByRegiaoGeografica(String regiaoGeografica);
+
 }
