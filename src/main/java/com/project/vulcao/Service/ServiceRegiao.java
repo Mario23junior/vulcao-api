@@ -45,6 +45,22 @@ public class ServiceRegiao {
  		return regiaoRepository.save(regiao);
 	}
 	
+	public ResponseEntity<RegiaoDTO> updateRegiao(Long id, Regiao regiao) {
+		DonLetValueBeDuplicated(regiao);
+ 		Optional<Regiao> listRegiao = regiaoRepository.findById(id);
+		if(listRegiao.isPresent()) {
+			Regiao regiaoConsult = listRegiao.get();
+			regiaoConsult.setAlcanceMatriz(regiao.getAlcanceMatriz());
+			regiaoConsult.setRegiaoGeografica(regiao.getRegiaoGeografica());
+			regiaoConsult.setTipoMontanha(regiao.getTipoMontanha());
+			regiaoConsult.setPico(regiao.getPico());
+			regiaoRepository.save(regiaoConsult);
+			return ResponseEntity.ok(modelMapper.map(regiaoConsult, RegiaoDTO.class));
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	public void DonLetValueBeDuplicated(Regiao regiao) {
 		Regiao BucarRegiao = regiaoRepository.findByRegiaoGeografica(regiao.getRegiaoGeografica());
 		if (BucarRegiao != null && BucarRegiao.getId() != regiao.getId()) {
