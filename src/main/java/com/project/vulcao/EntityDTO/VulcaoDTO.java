@@ -1,6 +1,7 @@
 package com.project.vulcao.EntityDTO;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -25,9 +26,12 @@ public class VulcaoDTO {
 	@Length(max = 1000, min = 3)
 	@NotNull(message = "Descricao")	
 	private String descricao;
+	
+ 	private List<RegiaoDTO> regiaoDto;
+ 	private List<LocalizacaoDTO> localizacaoDto;	
+ 	private List<EstruturaDTO> estruturaDto;
 
-	
-	
+
 	public VulcaoDTO() {
  	}
 	
@@ -85,6 +89,27 @@ public class VulcaoDTO {
 		this.descricao = descricao;
 	}
 
- 
+	public List<RegiaoDTO> getRegiaoDto() {
+		return regiaoDto;
+	}
 
+	public void setRegiaoDto(List<RegiaoDTO> regiaoDto) {
+		this.regiaoDto = regiaoDto;
+	}
+
+	public List<LocalizacaoDTO> getLocalizacaoDto() {
+		return localizacaoDto;
+	}
+
+	public void setLocalizacaoDto(List<LocalizacaoDTO> localizacaoDto) {
+		this.localizacaoDto = localizacaoDto;
+	}
+
+	public List<EstruturaDTO> getEstruturaDto() {
+		return estruturaDto;
+	}
+
+	public void setEstruturaDto(List<EstruturaDTO> estruturaDto) {
+		this.estruturaDto = estruturaDto;
+	}
 }
