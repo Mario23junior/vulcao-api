@@ -1,5 +1,7 @@
 package com.project.vulcao.Controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,12 +32,12 @@ public class ControllerLocalizacao {
 	}
 	
 	@PostMapping
-	public ResponseEntity<LocalizacaoDTO> saveLoacalizao(@RequestBody LocalizacaoDTO localizacaoDto) {
+	public ResponseEntity<LocalizacaoDTO> saveLoacalizao(@RequestBody @Valid LocalizacaoDTO localizacaoDto) {
 		return serviceLocalizacao.saveDataLocalizao(localizacaoDto);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<LocalizacaoDTO> updateLocalizacao(@PathVariable Long id, @RequestBody Localizacao localizacao) {
+	public ResponseEntity<LocalizacaoDTO> updateLocalizacao(@PathVariable Long id,@Valid  @RequestBody Localizacao localizacao) {
 		return serviceLocalizacao.updateDataLocalizacao(id, localizacao);
 	}
 	

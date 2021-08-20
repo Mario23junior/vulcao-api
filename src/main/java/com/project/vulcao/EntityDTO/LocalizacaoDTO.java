@@ -1,11 +1,27 @@
 package com.project.vulcao.EntityDTO;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class LocalizacaoDTO {
    
+	@Length(max = 5000, min = 2)
+ 	@NotNull(message = "continente")
 	private String continente;
+	
+	@Length(max = 5000, min = 3)
+ 	@NotNull(message = "pais")
 	private String pais;
+	
+	@Length(max = 6000, min = 3)
+ 	@NotNull(message = "metros")
 	private Double metros;
+	
 	private Double pes;
+	
+	@Length(max = 6000, min = 3)
+ 	@NotNull(message = "cooordenadas")
 	private String cooordenadas;
 	
 	
