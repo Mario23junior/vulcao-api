@@ -1,5 +1,7 @@
 package com.project.vulcao.Controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,12 +32,12 @@ public class ControllerRegiao {
 	}
 	
 	@PostMapping
-	public ResponseEntity<RegiaoDTO> saveByRegiao(@RequestBody RegiaoDTO regiaoDto) {
+	public ResponseEntity<RegiaoDTO> saveByRegiao(@RequestBody @Valid RegiaoDTO regiaoDto) {
 		return serviceRegiao.saveDataRegiao(regiaoDto);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<RegiaoDTO> updateRegiao(@RequestBody Regiao regiao, @PathVariable Long id) {
+	public ResponseEntity<RegiaoDTO> updateRegiao(@RequestBody @Valid Regiao regiao, @PathVariable Long id) {
 		return serviceRegiao.updateRegiao(id, regiao);
 	}
 	
@@ -44,24 +46,4 @@ public class ControllerRegiao {
 		return serviceRegiao.deleteByRegiao(id);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
