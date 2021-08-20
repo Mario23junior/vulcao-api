@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class VulcaoDTO {
  	
 	@Length(max = 10, min = 3)
@@ -27,9 +29,9 @@ public class VulcaoDTO {
 	@NotNull(message = "Descricao")	
 	private String descricao;
 	
- 	private List<RegiaoDTO> regiaoDto;
- 	private List<LocalizacaoDTO> localizacaoDto;	
- 	private List<EstruturaDTO> estruturaDto;
+ 	private List<RegiaoDTO> regiao;
+ 	private List<LocalizacaoDTO> localizacao;	
+ 	private List<EstruturaDTO> estrutura;
 
 
 	public VulcaoDTO() {
@@ -89,27 +91,34 @@ public class VulcaoDTO {
 		this.descricao = descricao;
 	}
 
-	public List<RegiaoDTO> getRegiaoDto() {
-		return regiaoDto;
+	@JsonIgnore
+	public List<RegiaoDTO> getRegiao() {
+		return regiao;
 	}
 
-	public void setRegiaoDto(List<RegiaoDTO> regiaoDto) {
-		this.regiaoDto = regiaoDto;
+	public void setRegiao(List<RegiaoDTO> regiao) {
+		this.regiao = regiao;
 	}
 
-	public List<LocalizacaoDTO> getLocalizacaoDto() {
-		return localizacaoDto;
+	@JsonIgnore
+	public List<LocalizacaoDTO> getLocalizacao() {
+		return localizacao;
 	}
 
-	public void setLocalizacaoDto(List<LocalizacaoDTO> localizacaoDto) {
-		this.localizacaoDto = localizacaoDto;
+	public void setLocalizacao(List<LocalizacaoDTO> localizacao) {
+		this.localizacao = localizacao;
 	}
 
-	public List<EstruturaDTO> getEstruturaDto() {
-		return estruturaDto;
+	@JsonIgnore
+	public List<EstruturaDTO> getEstrutura() {
+		return estrutura;
 	}
 
-	public void setEstruturaDto(List<EstruturaDTO> estruturaDto) {
-		this.estruturaDto = estruturaDto;
+	public void setEstrutura(List<EstruturaDTO> estrutura) {
+		this.estrutura = estrutura;
 	}
+	
+	
+
+
 }
