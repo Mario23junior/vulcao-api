@@ -14,8 +14,7 @@ public class LocalizacaoDTO {
  	@NotNull(message = "pais")
 	private String pais;
 	
-	@Length(max = 6000, min = 3)
- 	@NotNull(message = "metros")
+  	@NotNull(message = "metros")
 	private Double metros;
 	
 	private Double pes;
