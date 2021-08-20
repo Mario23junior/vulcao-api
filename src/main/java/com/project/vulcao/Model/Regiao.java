@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Regiao {
@@ -16,6 +17,9 @@ public class Regiao {
 	private String alcanceMatriz;
 	private String regiaoGeografica;
 	private String pico;
+	
+	@ManyToOne
+	private Vulcao vulcao;
 	
 	public Long getId() {
 		return id;
@@ -47,6 +51,14 @@ public class Regiao {
 	public void setPico(String pico) {
 		this.pico = pico;
 	}
+	public Vulcao getVulcao() {
+		return vulcao;
+	}
+	public void setVulcao(Vulcao vulcao) {
+		this.vulcao = vulcao;
+	}
+	
+	
 	
 	
 } 

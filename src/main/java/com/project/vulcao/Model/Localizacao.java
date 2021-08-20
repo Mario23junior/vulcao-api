@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Localizacao {
@@ -17,6 +18,9 @@ public class Localizacao {
 	private Double metros;
 	private Double pes;
 	private String cooordenadas;
+	
+	@ManyToOne
+	private Vulcao vulcao;
 	
 	public Long getId() {
 		return id;
@@ -53,6 +57,12 @@ public class Localizacao {
 	}
 	public void setCooordenadas(String cooordenadas) {
 		this.cooordenadas = cooordenadas;
+	}
+	public Vulcao getVulcao() {
+		return vulcao;
+	}
+	public void setVulcao(Vulcao vulcao) {
+		this.vulcao = vulcao;
 	}
 	
 	

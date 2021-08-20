@@ -1,11 +1,14 @@
 package com.project.vulcao.Model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -26,6 +29,15 @@ public class Vulcao {
 
 	@Length(max = 1000, min = 10)
 	private String descricao;
+	
+	@OneToMany(mappedBy = "vulcao", cascade = CascadeType.ALL)
+	private List<Regiao> regiao;
+	
+	@OneToMany(mappedBy = "vulcao", cascade = CascadeType.ALL)
+	private List<Localizacao> localizacao;
+	
+	@OneToMany(mappedBy = "vulcao", cascade = CascadeType.ALL)
+	private List<Estrutura> estrutura;
 	
 	public Vulcao() {
 		// TODO Auto-generated constructor stub
@@ -90,4 +102,30 @@ public class Vulcao {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	public List<Regiao> getRegiao() {
+		return regiao;
+	}
+
+	public void setRegiao(List<Regiao> regiao) {
+		this.regiao = regiao;
+	}
+
+	public List<Localizacao> getLocalizacao() {
+		return localizacao;
+	}
+
+	public void setLocalizacao(List<Localizacao> localizacao) {
+		this.localizacao = localizacao;
+	}
+
+	public List<Estrutura> getEstrutura() {
+		return estrutura;
+	}
+
+	public void setEstrutura(List<Estrutura> estrutura) {
+		this.estrutura = estrutura;
+	}
+	
+	
 }
