@@ -1,3 +1,5 @@
+<p align="center"><img src="/img/logo.gif" width="877px" height="383px"></p>
+
 # API de Vulcaos ativos no mundo 
 
 api de gestão de vendas e gerenciamento de produtos cliente e vendas
