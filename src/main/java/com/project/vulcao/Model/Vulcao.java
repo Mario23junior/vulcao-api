@@ -3,7 +3,6 @@ package com.project.vulcao.Model;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.Length;
+
 
 @Entity
 public class Vulcao {
@@ -30,13 +30,14 @@ public class Vulcao {
 	@Length(max = 1000, min = 10)
 	private String descricao;
 	
-	@OneToMany(mappedBy = "vulcao", cascade = CascadeType.ALL)
+	
+	@OneToMany(mappedBy = "vulcao")
 	private List<Regiao> regiao;
 	
-	@OneToMany(mappedBy = "vulcao", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "vulcao")
 	private List<Localizacao> localizacao;
 	
-	@OneToMany(mappedBy = "vulcao", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "vulcao")
 	private List<Estrutura> estrutura;
 	
 	public Vulcao() {
@@ -103,7 +104,8 @@ public class Vulcao {
 		this.descricao = descricao;
 	}
 
-	public List<Regiao> getRegiao() {
+	
+  	public List<Regiao> getRegiao() {
 		return regiao;
 	}
 
