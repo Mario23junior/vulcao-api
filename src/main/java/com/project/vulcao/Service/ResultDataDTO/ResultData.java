@@ -25,28 +25,24 @@ public class ResultData {
 	    return ((List<Vulcao>) vulcaoRepository
 	    		.findAll())
 	    		.stream()
-	    		.map(this::ConvertEntityAll)
+	    		.map(this::ConvertEntityAllDTO)
                 .collect(Collectors.toList());
 
 	}
 	
-	public VulcaoDTO ConvertEntityAll(Vulcao vulcao) {
-		VulcaoDTO vulcaoDataConvert = modelMapper.map(vulcao, VulcaoDTO.class);
-		return vulcaoDataConvert;
+	private VulcaoDTO ConvertEntityAllDTO(Vulcao vulcao) {
+          VulcaoDTO vulcaoDataConvert = modelMapper.map(vulcao, VulcaoDTO.class);
+ 		return vulcaoDataConvert;
 	}
 	
-	public List<VulcaoDTO> listAllData(){
-		List<VulcaoDTO> listId = listAllInformationData();
-		return listId
-				  .stream()
-				  .collect(Collectors.toList());
+	public List<VulcaoDTO> ListAllDataDTO() {
+		List<VulcaoDTO> list = listAllInformationData();
+		return list
+				.stream()
+				.collect(Collectors.toList());
 	}
+		
 }
-
-
-
-
-
 
 
 

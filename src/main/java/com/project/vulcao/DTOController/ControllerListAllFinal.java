@@ -21,6 +21,6 @@ public class ControllerListAllFinal {
 	
 	@GetMapping
 	public List<VulcaoDTO> list() {
-		return resultData.listAllData();
+		return resultData.ListAllDataDTO();
 	}
 }
