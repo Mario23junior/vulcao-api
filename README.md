@@ -47,7 +47,7 @@ http://localhost:8080/swagger-ui.html
 
 ## Resultado dos dados da API
 
-```
+```json
 [
     {
         "nome": "Sakurajima",
